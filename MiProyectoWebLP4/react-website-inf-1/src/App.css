@@ -7,8 +7,8 @@
 
 .home,
 .biografia,
-.categorias,
-.sign-up {
+.categoria,
+.nosotros{
     display: flex;
     height: 90vh;
     align-items: center;
@@ -26,7 +26,7 @@
     font-size: 100px;
 }
 
-.categorias {
+.categoria {
     background-image: url('./Components/images/img-2.jpg');
     background-position: center;
     background-size: cover;
@@ -34,7 +34,7 @@
     color: #fff;
     font-size: 100px;
 }
-.sign-up {
+.nosotros {
     background-image: url('./Components/images/img-3.jpg');
     background-position: left;
     background-size: cover;

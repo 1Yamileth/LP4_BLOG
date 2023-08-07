@@ -1,0 +1,29 @@
+
+.crear-blog-form label {
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  .crear-blog-form input[type='text'],
+  .crear-blog-form textarea {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .crear-blog-form input[type='submit'] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .crear-blog-form input[type='submit']:hover {
+    background-color: #45a049;
+  }
+  

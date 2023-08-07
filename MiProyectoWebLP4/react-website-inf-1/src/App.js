@@ -4,15 +4,9 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './Components/Pages/Home';
 import Navbar from './Components/Navbar';
 import Biografia from './Components/Pages/Biografia';
-import Categorias from './Components/Pages/CategoriaAEncontrar';
-import SignUp from './Components/Pages/SignUp';
-
-/*
-COSAS DE LA BASE DE DATOS*/
-import RecordList from "./Components/recordList";
-import Edit from "./Components/edit";
-import Create from "./Components/create"; 
-
+import Categoria from './Components/Pages/Categoria';
+import CrearBlog from './Components/Pages/CrearBlog';
+import Nosotros from './Components/Pages/Nosotros';
 
 /*1.BrowserRouter es un componente de React Router DOM que envuelve toda la aplicación y permite que los componentes de la 
     aplicación se comuniquen con la barra de direcciones del navegador.
@@ -33,9 +27,12 @@ return (
     <Navbar />
       <Routes>
         <Route path='/' exact Component={Home} />
-        <Route path='/biografia' Component={Biografia} />
-        <Route path='/categorias' Component={Categorias} />
-        <Route path='/sign-up' Component={SignUp} />
+        <Route path='/categoria' Component={Categoria} />
+        <Route path='/nosotros' Component={Nosotros} />
+        <Route path='/crearblog' Component={CrearBlog} />
+
+
+
         <Route exact path="/" element={<RecordList />} />
        <Route path="/edit/:id" element={<Edit />} />
        <Route path="/create" element={<Create />} />
@@ -61,3 +58,9 @@ const App = () => {
 };
  
 export default App;*/
+/*
+COSAS DE LA BASE DE DATOS
+import RecordList from "./Components/recordList";
+import Edit from "./Components/edit";
+import Create from "./Components/create"; 
+*/
