@@ -8,6 +8,7 @@ function Navbar() {
   const [click, setClick] = useState(false);
   const [button, setButton] = useState(true);
   const { user, isAuthenticated, loginWithRedirect, logout } = useAuth0();
+  const [dropdown, setDropdown] = useState(false);
 
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
@@ -29,7 +30,6 @@ function Navbar() {
   }, [isAuthenticated]);
 
   window.addEventListener('resize', showButton);
-
   return (
     <>
       <nav className='navbar'>
@@ -42,37 +42,68 @@ function Navbar() {
             {/* Icono de tres rayas */}
             <i className={click ? 'fas fa-times' : 'fas fa-bars'} />
           </div>
-
+  
           <ul className={click ? 'nav-menu active' : 'nav-menu'}>
             <li className='nav-item'>
               <Link to='/' className='nav-links' onClick={closeMobileMenu}>
                 Home
               </Link>
             </li>
-            <li className='nav-item'>
-              <Link to='/blogs' className='nav-links' onClick={closeMobileMenu}>
+            <li className='nav-item dropdown'>
+              <a
+                className='nav-link dropdown-toggle nav-links'
+                href='#'//RUTA DEL LA LISTA DE BLOG
+                role='button'
+                data-bs-toggle='dropdown'
+                aria-expanded='false'
+                onClick={() => setDropdown(!dropdown)}
+              >
                 Blogs
-              </Link>
+              </a>
+              {dropdown && (
+                <ul className='  dropdown-menu'>
+                  <li>
+                    <Link to='/create' onClick={closeMobileMenu}>
+                      Crear Blog
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to='/edit' onClick={closeMobileMenu}>
+                     Editar Blog
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to='/recordList' onClick={closeMobileMenu}>
+                     Lista De Blogs
+                    </Link>
+                  </li>
+                </ul>
+              )}
             </li>
             <li className='nav-item'>
-              <Link to='/categoria' className='nav-links' onClick={closeMobileMenu}>
+              <Link
+                to='/categoria'
+                className='nav-links'
+                onClick={closeMobileMenu}
+              >
                 Categoria
               </Link>
             </li>
             {isAuthenticated && (
               <li className='nav-item'>
-                <Link to='/crear-blog-form' className='nav-links' onClick={closeMobileMenu}>
+                <Link
+                  to='/create'
+                  className='nav-links'
+                  onClick={closeMobileMenu}
+                >
                   Crear Blog
                 </Link>
               </li>
             )}
-            <li className='nav-item'>
-              <Link to='/nosotros' className='nav-links' onClick={closeMobileMenu}>
-                Nosotros
-              </Link>
-            </li>
           </ul>
         </div>
+     
+  
 
         {isAuthenticated ? (
           <div className='navbar-container'>

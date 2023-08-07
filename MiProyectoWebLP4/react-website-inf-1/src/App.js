@@ -7,6 +7,9 @@ import Biografia from './Components/Pages/Biografia';
 import Categoria from './Components/Pages/Categoria';
 import CrearBlog from './Components/Pages/CrearBlog';
 import Nosotros from './Components/Pages/Nosotros';
+import RecordList from "./Components/recordList";
+import Edit from "./Components/edit";
+import Create from "./Components/create"; 
 
 /*1.BrowserRouter es un componente de React Router DOM que envuelve toda la aplicación y permite que los componentes de la 
     aplicación se comuniquen con la barra de direcciones del navegador.
@@ -59,8 +62,5 @@ const App = () => {
  
 export default App;*/
 /*
-COSAS DE LA BASE DE DATOS
-import RecordList from "./Components/recordList";
-import Edit from "./Components/edit";
-import Create from "./Components/create"; 
+
 */

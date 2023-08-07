@@ -8,7 +8,7 @@ el nuevo registro a la base de datos*/
 
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
- 
+import './create.css';
 
 
 
@@ -54,7 +54,10 @@ const [form, setForm] = useState({
  // This function will handle the submission.
  async function onSubmit(e) {
    e.preventDefault();
- 
+   if (form.title.length < 5 || form.title.length > 10) {
+     alert('EL TITUTLO DEBE DE TENER ENTRE 5 Y 100 CARACTERES');
+     return;
+   }
    // When a post request is sent to the create url, we'll add a new record to the database.
    const newPerson = { ...form };
  
@@ -70,84 +73,59 @@ const [form, setForm] = useState({
      return;
    });
  
-   setForm({ name: "", position: "", level: "" });
+   setForm({ title: "", content: "", tags: "" });
    navigate("/");
  }
  
 
-
-
- // This following section will display the form that takes the input from the user.
- return (
-   <div>
-     <h3>Create New Record</h3>
-     <form onSubmit={onSubmit}>
-       <div className="form-group">
-         <label htmlFor="name">Name</label>
-         <input
-           type="text"
-           className="form-control"
-           id="name"
-           value={form.name}
-           onChange={(e) => updateForm({ name: e.target.value })}
-         />
-       </div>
-       <div className="form-group">
-         <label htmlFor="position">Position</label>
-         <input
-           type="text"
-           className="form-control"
-           id="position"
-           value={form.position}
-           onChange={(e) => updateForm({ position: e.target.value })}
-         />
-       </div>
-       <div className="form-group">
-         <div className="form-check form-check-inline">
-           <input
-             className="form-check-input"
-             type="radio"
-             name="positionOptions"
-             id="positionIntern"
-             value="Intern"
-             checked={form.level === "Intern"}
-             onChange={(e) => updateForm({ level: e.target.value })}
-           />
-           <label htmlFor="positionIntern" className="form-check-label">Intern</label>
-         </div>
-         <div className="form-check form-check-inline">
-           <input
-             className="form-check-input"
-             type="radio"
-             name="positionOptions"
-             id="positionJunior"
-             value="Junior"
-             checked={form.level === "Junior"}
-             onChange={(e) => updateForm({ level: e.target.value })}
-           />
-           <label htmlFor="positionJunior" className="form-check-label">Junior</label>
-         </div>
-         <div className="form-check form-check-inline">
-           <input
-             className="form-check-input"
-             type="radio"
-             name="positionOptions"
-             id="positionSenior"
-             value="Senior"
-             checked={form.level === "Senior"}
-             onChange={(e) => updateForm({ level: e.target.value })}
-           />
-           <label htmlFor="positionSenior" className="form-check-label">Senior</label>
-         </div>
-       </div>
-       <div className="form-group">
-         <input
-           type="submit"
-           value="Create person"
-           className="btn btn-primary"
-         />
-       </div>
-     </form>
-   </div>
- );
+  // This following section will display the form that takes the input from the user.
+  return (
+    <div>
+      <h3>Share Your Story</h3>
+      <form onSubmit={onSubmit}>
+        <div className="form-group">
+          <label htmlFor="title">Title</label>
+          <input
+            type="text"
+            className="form-control"
+            id="title"
+            value={form.title}
+            onChange={(e) => updateForm({ title: e.target.value })}
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="content">Your Story</label>
+          <textarea
+            className="form-control"
+            id="content"
+            value={form.content}
+            onChange={(e) => updateForm({ content: e.target.value })}
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="media">Photos/Videos</label>
+          <input
+            type="text"
+            className="form-control"
+            id="media"
+            value={form.media}
+            onChange={(e) => updateForm({ media: e.target.value })}
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="tags">Tags</label>
+          <input
+            type="text"
+            className="form-control"
+            id="tags"
+            value={form.tags}
+            onChange={(e) => updateForm({ tags: e.target.value })}
+          />
+        </div>
+        <div className="form-group">
+          <input type="submit" value="Share" className="btn btn-primary" />
+        </div>
+      </form>
+    </div>
+  );
 }
