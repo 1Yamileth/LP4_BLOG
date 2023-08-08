@@ -5,78 +5,48 @@ comando create a nuestro servidor.
 El componente define un formulario con campos para ingresar el nombre, la posición y el nivel del nuevo registro. 
 Cuando el usuario envía el formulario, el componente envía una solicitud POST a la ruta /record del servidor para agregar
 el nuevo registro a la base de datos*/
-
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
-import './create.css';
-
-
-
-
 
 export default function Create() {
-  // This function will handle the submission.
-async function onSubmit(e) {
-  e.preventDefault();
-
-  // When a post request is sent to the create url, we'll add a new record to the database.
-  const newPerson = { ...form };//ERROR ACA
-
-  await fetch("http://localhost:5050/record", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(newPerson),
-  })
-  .catch(error => {
-    window.alert(error);
-    return;
+  const [form, setForm] = useState({
+    titulo: "",
+    contenido: "",
+    categoria: "",
+    fechaCreacion: "",
+    fechaActualizacion: ""
   });
+  const navigate = useNavigate();
 
-  setForm({ name: "", position: "", level: "" });//ERROR ACA
-  navigate("/");
-}
-const [form, setForm] = useState({
-   name: "",
-   position: "",
-   level: "",
- });
- const navigate = useNavigate();
- 
- // These methods will update the state properties.
- function updateForm(value) {
-   return setForm((prev) => {
-     return { ...prev, ...value };
-   });
- }
- 
- // This function will handle the submission.
- async function onSubmit(e) {
-   e.preventDefault();
-   if (form.title.length < 5 || form.title.length > 10) {
-     alert('EL TITUTLO DEBE DE TENER ENTRE 5 Y 100 CARACTERES');
-     return;
-   }
-   // When a post request is sent to the create url, we'll add a new record to the database.
-   const newPerson = { ...form };
- 
-   await fetch("http://localhost:5050/record", {
-     method: "POST",
-     headers: {
-       "Content-Type": "application/json",
-     },
-     body: JSON.stringify(newPerson),
-   })
-   .catch(error => {
-     window.alert(error);
-     return;
-   });
- 
-   setForm({ title: "", content: "", tags: "" });
-   navigate("/");
- }
- 
+  // These methods will update the state properties.
+  function updateForm(value) {
+    return setForm((prev) => {
+      return { ...prev, ...value };
+    });
+  }
+
+  // This function will handle the submission.
+  async function onSubmit(e) {
+    e.preventDefault();
+
+    // When a post request is sent to the create url, we'll add a new record to the database.
+    const newBlog = { ...form };
+
+    await fetch("http://localhost:5050/Blog", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newBlog),
+    })
+    .catch(error => {
+      window.alert(error);
+      return;
+    });
+
+    setForm({ titulo: "", contenido: "", categoria: "", fechaCreacion: "", fechaActualizacion: "" });
+    navigate("/");
+  }
 
   // This following section will display the form that takes the input from the user.
   return (
@@ -84,42 +54,52 @@ const [form, setForm] = useState({
       <h3>Share Your Story</h3>
       <form onSubmit={onSubmit}>
         <div className="form-group">
-          <label htmlFor="title">Title</label>
+          <label htmlFor="titulo">Title</label>
           <input
             type="text"
             className="form-control"
-            id="title"
-            value={form.title}
-            onChange={(e) => updateForm({ title: e.target.value })}
+            id="titulo"
+            value={form.titulo}
+            onChange={(e) => updateForm({ titulo: e.target.value })}
           />
         </div>
         <div className="form-group">
-          <label htmlFor="content">Your Story</label>
+          <label htmlFor="contenido">Your Story</label>
           <textarea
             className="form-control"
-            id="content"
-            value={form.content}
-            onChange={(e) => updateForm({ content: e.target.value })}
+            id="contenido"
+            value={form.contenido}
+            onChange={(e) => updateForm({ contenido: e.target.value })}
           />
         </div>
         <div className="form-group">
-          <label htmlFor="media">Photos/Videos</label>
+          <label htmlFor="categoria">Category</label>
           <input
             type="text"
             className="form-control"
-            id="media"
-            value={form.media}
-            onChange={(e) => updateForm({ media: e.target.value })}
+            id="categoria"
+            value={form.categoria}
+            onChange={(e) => updateForm({ categoria: e.target.value })}
           />
         </div>
         <div className="form-group">
-          <label htmlFor="tags">Tags</label>
+          <label htmlFor="fechaCreacion">Creation Date</label>
           <input
-            type="text"
+            type="date"
             className="form-control"
-            id="tags"
-            value={form.tags}
-            onChange={(e) => updateForm({ tags: e.target.value })}
+            id="fechaCreacion"
+            value={form.fechaCreacion}
+            onChange={(e) => updateForm({ fechaCreacion: e.target.value })}
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="fechaActualizacion">Update Date</label>
+          <input
+            type="date"
+            className="form-control"
+            id="fechaActualizacion"
+            value={form.fechaActualizacion}
+            onChange={(e) => updateForm({ fechaActualizacion: e.target.value })}
           />
         </div>
         <div className="form-group">
