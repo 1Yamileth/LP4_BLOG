@@ -7,6 +7,7 @@ Cuando el usuario envía el formulario, el componente envía una solicitud POST 
 el nuevo registro a la base de datos*/
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
+import './crearblog.css';
 
 export default function Create() {
   const [form, setForm] = useState({
@@ -28,7 +29,11 @@ export default function Create() {
   // This function will handle the submission.
   async function onSubmit(e) {
     e.preventDefault();
-
+    //CONDICION PARA EL USUARIO
+    if (form.titulo.length < 5 || form.titulo.length > 100) {
+      alert('EL TITULO DEBE DE CONTENER MAS DE 5 Y MENOS DE 100 CARACTERES');
+      return;
+    }
     // When a post request is sent to the create url, we'll add a new record to the database.
     const newBlog = { ...form };
 

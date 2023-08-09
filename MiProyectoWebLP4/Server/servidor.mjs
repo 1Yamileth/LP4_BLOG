@@ -2,7 +2,7 @@
 import express from "express";
 import cors from "cors";
 import "./loadEnvironment.mjs";
-import records from "./routes/record.mjs";
+import blog from "./routes/blog.mjs";
 
 
 /*Define el puerto en el que se ejecutará el servidor, ya sea el valor de la variable de 
@@ -17,7 +17,7 @@ app.use(cors());
 app.use(express.json());
 
 /*Usa el enrutador records para manejar las solicitudes a la ruta /record. */
-app.use("/record", records);
+app.use("/blog", blog);
 
 /*Inicia el servidor Express en el puerto especificado y registra un mensaje en la consola
  indicando que el servidor está en ejecución */

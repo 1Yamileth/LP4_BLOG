@@ -5,11 +5,30 @@ import Home from './Components/Pages/Home';
 import Navbar from './Components/Navbar';
 import Biografia from './Components/Pages/Biografia';
 import Categoria from './Components/Pages/Categoria';
-import CrearBlog from './Components/Pages/CrearBlog';
 import Nosotros from './Components/Pages/Nosotros';
-import RecordList from "./Components/recordList";
 import Edit from "./Components/edit";
-import Create from "./Components/create"; 
+import Create from "./Components/CrearBlog"; 
+import BlogList from './Components/BlogList'; // Importa el componente BlogList
+
+function App() {
+  return (
+    <>
+      <Router>
+        <Navbar />
+        <Routes>
+          <Route path='/' exact Component={Home} />
+          <Route path='/categoria' Component={Categoria} />
+          <Route path='/nosotros' Component={Nosotros} />
+          <Route path='/blogs' element={<BlogList />} />
+          <Route path="/edit/:id" element={<Edit />} />
+          <Route path="/create" element={<Create />} />
+        </Routes>
+      </Router>
+    </>
+  );
+}
+export default App;
+
 
 /*1.BrowserRouter es un componente de React Router DOM que envuelve toda la aplicación y permite que los componentes de la 
     aplicación se comuniquen con la barra de direcciones del navegador.
@@ -23,44 +42,3 @@ import Create from "./Components/create";
   la URL de la ruta. La propiedad “Component” se utiliza para definir el componente que se renderizará 
   cuando se visite la ruta. */ 
   
-function App() {
-return (
-<>
-  <Router>
-    <Navbar />
-      <Routes>
-        <Route path='/' exact Component={Home} />
-        <Route path='/categoria' Component={Categoria} />
-        <Route path='/nosotros' Component={Nosotros} />
-        <Route path='/crearblog' Component={CrearBlog} />
-
-
-
-        <Route exact path="/" element={<RecordList />} />
-       <Route path="/edit/:id" element={<Edit />} />
-       <Route path="/create" element={<Create />} />
-      </Routes>
-  </Router>
-</>
-);
-}
-export default App;
-
-/*
-const App = () => {
- return (
-   <div>
-     <Navbar />
-     <Routes>
-       <Route exact path="/" element={<RecordList />} />
-       <Route path="/edit/:id" element={<Edit />} />
-       <Route path="/create" element={<Create />} />
-     </Routes>
-   </div>
- );
-};
- 
-export default App;*/
-/*
-
-*/

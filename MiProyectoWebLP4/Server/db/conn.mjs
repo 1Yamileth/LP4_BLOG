@@ -16,7 +16,18 @@ try {
 }
 
 //Obtiene una referencia a la base de datos sample_training utilizando el método db del objeto de conexión.
-let db = conn.db("sample_training");
+let db = conn.db("LP4_Proyecto");
+
+// Acceso a nultiples colecciones
+const Blog = db.collection('blog');
+const Comentario = db.collection('comentario');
+const Categoria = db.collection('categoria');
+const CategoriaDelBlog = db.collection('categoria_del_blog');
+const Email = db.collection('email');
+const Etiqueta = db.collection('etiqueta');
+const EtiquetaDelBlog = db.collection('etiqueta_del_blog');
+const Usuario = db.collection('usuario');
 
 //Exporta la referencia a la base de datos para que pueda ser utilizada en otras partes del código.
 export default db;
+

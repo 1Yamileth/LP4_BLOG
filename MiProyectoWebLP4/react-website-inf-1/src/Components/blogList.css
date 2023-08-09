@@ -1,0 +1,29 @@
+/* BlogList.css */
+.BlogList {
+    font-family: sans-serif;
+    
+  }
+  
+  .BlogList h3 {
+    margin-bottom: 1rem;
+  }
+  
+  .BlogList table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .BlogList th,
+  .BlogList td {
+    padding: 0.5rem;
+    text-align: left;
+  }
+  
+  .BlogList th {
+    border-bottom: 1px solid #ccc;
+  }
+  
+  .BlogList tr:nth-child(even) {
+    background-color: #f8f8f8;
+  }
+  

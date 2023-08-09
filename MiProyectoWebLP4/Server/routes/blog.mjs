@@ -4,24 +4,24 @@ import { ObjectId } from "mongodb";
 
 const router = express.Router();
 
-// This section will help you get a list of all the records.
+// TRAE UNA LISTA DE LOS BLOGS
 router.get("/", async (req, res) => {
-  let LP4_Proyecto = await db.LP4_Proyecto("Blog");
-  let results = await LP4_Proyecto.find({}).toArray();
+  let Blog = await db.collection("Blog");
+  let results = await Blog.find({}).toArray();
   res.send(results).status(200);
 });
 
 // This section will help you get a single record by id
 router.get("/:id", async (req, res) => {
-  let LP4_Proyecto = await db.LP4_Proyecto("Blog");
+  let Blog = await db.collection("Blog");
   let query = {_id: new ObjectId(req.params.id)};
-  let result = await LP4_Proyecto.findOne(query);
+  let result = await Blog.findOne(query);
 
   if (!result) res.send("Not found").status(404);
   else res.send(result).status(200);
 });
 
-// This section will help you create a new record.
+// CREA UN NUEVO BLOG
 router.post("/", async (req, res) => {
   let newDocument = {
     titulo: req.body.titulo,
@@ -30,12 +30,12 @@ router.post("/", async (req, res) => {
     fechaCreacion: req.body.fechaCreacion,
     fechaActualizacion: req.body.fechaActualizacion
   };
-  let LP4_Proyecto = await db.LP4_Proyecto("Blog");
-  let result = await LP4_Proyecto.insertOne(newDocument);
+  let Blog = await db.collection("Blog");
+  let result = await Blog.insertOne(newDocument);
   res.send(result).status(204);
 });
 
-// This section will help you update a record by id.
+// ACTUALIZA UN BLOG
 router.patch("/:id", async (req, res) => {
   const query = { _id: new ObjectId(req.params.id) };
   const updates =  {
@@ -48,8 +48,8 @@ router.patch("/:id", async (req, res) => {
     }
   };
 
-  let LP4_Proyecto = await db.LP4_Proyecto("Blog");
-  let result = await LP4_Proyecto.updateOne(query, updates);
+  let Blog = await db.collection("Blog");
+  let result = await Blog.updateOne(query, updates);
 
   res.send(result).status(200);
 });
@@ -58,9 +58,10 @@ router.patch("/:id", async (req, res) => {
 router.delete("/:id", async (req, res) => {
   const query = { _id: new ObjectId(req.params.id) };
 
-  const LP4_Proyecto = db.LP4_Proyecto("Blog");
-  let result = await LP4_Proyecto.deleteOne(query);
+  const Blog = db.collection("Blog");
+  let result = await Blog.deleteOne(query);
 
+  //Envía el resultado de la operación de eliminación como respuesta a la solicitud y establece el código de estado HTTP en 200.
   res.send(result).status(200);
 });
 

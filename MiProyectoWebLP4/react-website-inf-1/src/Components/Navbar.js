@@ -68,12 +68,7 @@ function Navbar() {
                     </Link>
                   </li>
                   <li>
-                    <Link to='/Edit' onClick={closeMobileMenu}>
-                     Editar Blog
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to='/recordList' onClick={closeMobileMenu}>
+                    <Link to='/blogs' onClick={closeMobileMenu}>
                      Lista De Blogs
                     </Link>
                   </li>
